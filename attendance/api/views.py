@@ -17,6 +17,7 @@ def attend(req):
         stud.prn=body['prn']
         stud.present=body['present']
         stud.batch=body['batch']
+        stud.sub=body['sub']
         stud.save()
         data={
             "success":True
@@ -47,6 +48,7 @@ def update_attendance(req):
         stud.date=body['date']
         stud.present=body['present']
         stud.batch=body['batch']
+        stud.sub=body['sub']
         print(stud)
         stud.save()
         data={
