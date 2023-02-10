@@ -1,9 +1,25 @@
 from django.shortcuts import render
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Student
+from .models import Student,Batch
 import json
+import pymongo
 # Create your views here.
+
+
+#mongo db connection
+# from pymongo import MongoClient
+# import pymongo
+# client = pymongo.MongoClient("mongodb://localhost:27017/")
+
+# # Get a reference to the database
+# db = client["test_database"]
+
+# # Get a reference to a collection
+# collection = db["test_collection"]
+
+
+
 @csrf_exempt
 def home(req):
     return HttpResponse("HELLO WORLD")
@@ -62,5 +78,17 @@ def get_attendance(req):
         stud=list(Student.objects.values())
         data={
             "data":stud
+        }
+        return  JsonResponse(data,safe = False)
+
+
+@csrf_exempt
+def getbatch(req):
+    if req.method=="POST":
+        body=req.body.decode('utf-8')
+        body=json.loads(body)
+        batc=list(Batch.objects.filter(batch=body['batch']).values())
+        data={
+            "data":batc
         }
         return  JsonResponse(data,safe = False)

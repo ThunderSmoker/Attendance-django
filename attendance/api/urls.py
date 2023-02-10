@@ -20,7 +20,9 @@ from .views import *
 urlpatterns = [
     path('',home),
     path('attendance/',attend),
+    path('get-batch/',getbatch),
     path('delete/',delete_attendance),
     path('update/',update_attendance),
-    path('get-all/',get_attendance)
+    path('get-all/',get_attendance),
+
 ]
