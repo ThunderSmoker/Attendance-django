@@ -85,8 +85,8 @@ def get_attendance(req):
 @csrf_exempt
 def getbatch(req):
     if req.method=="POST":
-        body=req.body.decode('utf-8')
-        body=json.loads(body)
+        body=json.loads(req.body.decode("utf-8"))
+        print(body)
         batc=list(Batch.objects.filter(batch=body['batch']).values())
         data={
             "data":batc
