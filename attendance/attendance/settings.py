@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zqwed7a1s_j4#w^g9&6+@v)*l3!33n9&pgjuli0@*rm++gguop
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['attendance-django-production.up.railway.app','127.0.0.1']
+ALLOWED_HOSTS = ['wce-attendance.up.railway.app','127.0.0.1']
 
 
 # Application definition
