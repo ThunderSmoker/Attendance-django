@@ -3,7 +3,7 @@ from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Student,Batch
 import json
-import pymongo
+import api.connect as mongo
 # Create your views here.
 
 
@@ -31,6 +31,7 @@ def attend(req):
         if len(list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch'],prn=body['prn']).values()))!=0:
             stud=Student.objects.get(prn=body['prn'])
             stud.present=body['present']
+            mongo.student_m.update_one({"prn":body["prn"]},{"$set":{"present":body['present']}})
             return JsonResponse({"msg":"already attended"})
         else:
             stud=Student()
@@ -40,6 +41,14 @@ def attend(req):
             stud.batch=body['batch']
             stud.sub=body['sub']
             stud.save()
+            mongo_student={
+                "date":body['date'],
+                'prn':body['prn'],
+                'batch':body['batch'],
+                'sub':body['sub'],
+                'present':body['present']
+            }
+            mongo.student_m.insert_one(mongo_student)
             data={
                 "success":True
             }
@@ -81,9 +90,10 @@ def update_attendance(req):
 def get_attendance(req):
     if req.method=="POST":
         body=json.loads(req.body.decode("utf-8"))
+        mongo_stud=list(mongo.student_m.find({},{ "_id": 0 }))
         stud=list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch']).values())
         data={
-            "data":stud
+            "data":mongo_stud
         }
         return  JsonResponse(data,safe = False)
 
