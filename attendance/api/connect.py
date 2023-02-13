@@ -2,8 +2,10 @@ from pymongo import MongoClient
 import pymongo
 import os
 from dotenv import load_dotenv
+import urllib
 load_dotenv()
-client = pymongo.MongoClient(os.getenv("MONGO_URI"))
+uri='mongodb+srv://ThunderSmoker:' + urllib.parse.quote('Pitlawar@2004') + '@attendance.czbusw2.mongodb.net/?retryWrites=true&w=majority'
+client = pymongo.MongoClient(os.getenv(""))
 print(os.getenv("MONGO_URI"))
 # Get a reference to the database
 db = client["Attendance"]
