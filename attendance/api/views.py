@@ -74,8 +74,9 @@ def update_attendance(req):
 
 @csrf_exempt
 def get_attendance(req):
-    if req.method=="GET":
-        stud=list(Student.objects.values())
+    if req.method=="POST":
+        body=json.loads(req.body.decode("utf-8"))
+        stud=list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch']).values())
         data={
             "data":stud
         }
