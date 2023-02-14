@@ -4,88 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Student,Batch
 import json
 # Create your views here.
-arr=[
-    {
-      "id": 1,
-      "batch": "s4",
-      "prn": 21510051
-    },
-    {
-      "id": 2,
-      "batch": "s4",
-      "prn": 21510052
-    },
-    {
-      "id": 3,
-      "batch": "s4",
-      "prn": 21510053
-    },
-    {
-      "id": 4,
-      "batch": "s4",
-      "prn": 21510054
-    },
-    {
-      "id": 5,
-      "batch": "s4",
-      "prn": 21510055
-    },
-    {
-      "id": 6,
-      "batch": "s4",
-      "prn": 21510056
-    },
-    {
-      "id": 7,
-      "batch": "s4",
-      "prn": 21510057
-    },
-    {
-      "id": 8,
-      "batch": "s4",
-      "prn": 21510058
-    },
-    {
-      "id": 9,
-      "batch": "s4",
-      "prn": 21510060
-    },
-    {
-      "id": 10,
-      "batch": "s4",
-      "prn": 21510062
-    },
-    {
-      "id": 11,
-      "batch": "s4",
-      "prn": 21510063
-    },
-    {
-      "id": 12,
-      "batch": "s4",
-      "prn": 21510064
-    },
-    {
-      "id": 13,
-      "batch": "s4",
-      "prn": 21510065
-    },
-    {
-      "id": 14,
-      "batch": "s4",
-      "prn": 21510066
-    },
-    {
-      "id": 15,
-      "batch": "s4",
-      "prn": 21510067
-    },
-    {
-      "id": 16,
-      "batch": "s4",
-      "prn": 21510068
-    }
-  ]
 
 #mongo db connection
 # from pymongo import MongoClient
@@ -176,7 +94,7 @@ def getbatch(req):
         body=json.loads(req.body.decode("utf-8"))
         print(body)
         batc=list(Batch.objects.filter(batch=body['batch']).values())
-
+        batc.sort()
         data={
             "data":batc
         }
