@@ -84,14 +84,14 @@ WSGI_APPLICATION = 'attendance.wsgi.application'
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'Attendance',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': 'mongodb+srv://ThunderSmoker:'+passwd+'@attendance.czbusw2.mongodb.net/Attendance?retryWrites=true&w=majority'
-            }  
-        }
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'Attendance',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb+srv://ThunderSmoker:'+passwd+'@attendance.czbusw2.mongodb.net/Attendance?retryWrites=true&w=majority'
+        }  
+    }
 }
 
 
