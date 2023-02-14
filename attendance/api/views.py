@@ -93,7 +93,7 @@ def getbatch(req):
     if req.method=="POST":
         body=json.loads(req.body.decode("utf-8"))
         print(body)
-        batc=list(Batch.objects.filter(batch=body['batch']).order_by('prn').values()))
+        batc=list(Batch.objects.filter(batch=body['batch']).order_by('prn').values())
         data={
             "data":batc
         }
