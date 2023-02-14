@@ -1,6 +1,6 @@
 # Create your models here.
 from django.db import models
- 
+from djongo import models as mongom
 class Student(models.Model):
     date = models.CharField(max_length = 200)
     batch=models.CharField(max_length=4)
