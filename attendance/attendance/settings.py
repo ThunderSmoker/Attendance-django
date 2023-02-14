@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'Attendance',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://ThunderSmoker:'+passwd+'@attendance.czbusw2.mongodb.net/Attendance?retryWrites=true&w=majority'
+            'host': 'mongodb+srv://ThunderSmoker:Ben10000@attendance.czbusw2.mongodb.net/Attendance?tls=true&tlsAllowInvalidCertificates=true&retryWrites=true&w=majority'
         }  
     }
 }
