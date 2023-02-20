@@ -81,7 +81,7 @@ def update_attendance(req):
 def get_attendance(req):
     if req.method=="POST":
         body=json.loads(req.body.decode("utf-8"))
-        stud=list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch']).values())
+        stud=list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch']).order_by('prn').values())
         data={
             "data":stud
         }
