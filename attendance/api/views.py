@@ -26,16 +26,18 @@ def attend(req):
     if req.method=="POST":
         body=req.body.decode('utf-8')
         body=json.loads(body)
-        if len(list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch'],prn=body['prn']).values()))!=0:
-            stud=Student.objects.get(prn=body['prn'])
+        if len(list(Student.objects.filter(date=body['date'],sub=body['sub'],batch=body['batch'],prn=f"{body['prn']} {body['date']}" ).values()))!=0:
+            print("h1")
+            stud=Student.objects.get(date=body['date'],sub=body['sub'],batch=body['batch'],prn=f"{body['prn']} {body['date']}")
             stud.present=body['present']
             stud.save()
             print(stud.present)
             return JsonResponse({"msg":"already attended"})
         else:
+            print("hello")
             stud=Student()
             stud.date=body['date']
-            stud.prn=body['prn']
+            stud.prn=f"{body['prn']} {body['date']}"
             stud.present=body['present']
             stud.batch=body['batch']
             stud.sub=body['sub']
